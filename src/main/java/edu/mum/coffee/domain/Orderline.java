@@ -7,6 +7,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Orderline")
 public class Orderline {
@@ -18,6 +20,7 @@ public class Orderline {
 	@OneToOne
 	private Product product;
 	@ManyToOne
+	@JsonIgnore
 	private Order order;
 
 	public int getQuantity() {
@@ -35,10 +38,9 @@ public class Orderline {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-
-//	public Order getOrder() {
-//		return order;
-//	}
+	public Order getOrder() {
+		return order;
+	}
 
 	public void setOrder(Order order) {
 		this.order = order;

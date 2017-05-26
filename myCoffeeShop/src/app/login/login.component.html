@@ -1,0 +1,15 @@
+<div *ngIf="set" class="col-md-4 col-md-offset-4">
+	<div class="panel panel-danger">
+		<div class="panel-heading">Login</div>
+		<form class="">
+			<label>User: </label><input class="form-control" type="text" id="username" name="username" [(ngModel)]="username" />
+			<label>Password: </label><input class="form-control" type="password" id="password" name="password" [(ngModel)]="password"
+			(keyup.enter)="login()" />
+			<input class="btn btn-success" type="button" (click)="login()" value="Submit" />
+			<p *ngIf="!valid" class="alert alert-danger">
+				Invalid username and password!
+			</p>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+		</form>
+	</div>
+</div>

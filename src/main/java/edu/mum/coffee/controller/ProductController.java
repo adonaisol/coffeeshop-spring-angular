@@ -3,8 +3,6 @@ package edu.mum.coffee.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,18 +53,36 @@ public class ProductController {
 	}*/
 	
 	@PostMapping(value="/")
-	public Product saveProduct(@RequestBody Product product){
+	public String saveProduct(Product product){
+		productService.save(product);
+		return "redirect:/admin/products";
+	}
+	
+	@PostMapping(value="/new")
+	public Product saveProducts(@RequestBody Product product){
 		return productService.save(product);
 	}
 	
 	@PutMapping(value="/update/{id}")
-	public Product updateProduct(@PathVariable int id, @RequestBody Product product){
+	public String updateProduct(@PathVariable int id, Product product){
 		Product product2 = productService.getProduct(id);
 		product2.setDescription(product.getDescription());
 		product2.setProductName(product.getProductName());
 		product2.setPrice(product.getPrice());
 		product2.setProductType(product.getProductType());
-		return productService.save(product2);
+		productService.save(product2);
+		return "redirect:/admin/products";
+	}
+	
+	@PostMapping(value="/update/{id}")
+	public String updateProductPost(@PathVariable int id, Product product){
+		Product product2 = productService.getProduct(id);
+		product2.setDescription(product.getDescription());
+		product2.setProductName(product.getProductName());
+		product2.setPrice(product.getPrice());
+		product2.setProductType(product.getProductType());
+		productService.save(product2);
+		return "redirect:/admin/products";
 	}
 	
 	@PostMapping(value="/delete/{id}")

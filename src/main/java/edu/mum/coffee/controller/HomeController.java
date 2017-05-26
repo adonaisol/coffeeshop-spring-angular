@@ -9,12 +9,12 @@ public class HomeController {
 
 	@GetMapping({"/", "/index", "/home"})
 	public String homePage() {
-		return "home";
+		return "redirect:/admin";
 	}
 
 	@GetMapping({"/secure"})
 	public String securePage() {
-		return "secure";
+		return "redirect:/admin";
 	}
 
 	@GetMapping("/login")
@@ -23,7 +23,7 @@ public class HomeController {
 		//    model.addAttribute("error", "Your username and password is invalid.");
 		if (logout != null)
 			model.addAttribute("message", "You have been logged out successfully.");
-		System.out.println("hellooooooooooooooooooo");
+		//System.out.println("hellooooooooooooooooooo");
 		return "login";
 	}
 }

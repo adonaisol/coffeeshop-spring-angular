@@ -1,0 +1,9 @@
+<a [routerLink]="['login']" class="pull-right">Login</a>
+<div class="clearfix"></div>
+<div class="col-md-12">
+  <div class="well col-md-4 col-xs-6 text-center" *ngFor="let product of products">
+    <h3>{{product.productName}}</h3>
+    <h4>{{product.description}}</h4>
+    <p><strong class="pull-left">{{product.productType}}</strong><span class="pull-right">${{product.price}}</span></p>
+  </div>
+</div>

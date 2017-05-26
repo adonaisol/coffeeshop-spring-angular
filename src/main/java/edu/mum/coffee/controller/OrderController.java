@@ -62,6 +62,8 @@ public class OrderController {
 	
 	@PostMapping(value="/")
 	public Order saveOrder(@RequestBody Order order){
+		Orderline orderline = order.getOrderLines().get(0);
+		System.out.println(orderline.getQuantity());
 		return orderService.save(order);
 	}
 	
